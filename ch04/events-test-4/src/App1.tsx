@@ -14,6 +14,11 @@ const App = () => {
   const decrement = () => {
     setCount(count - 1);
   };
+
+  const changeHandler = () => {
+    console.log('change');
+  };
+
   return (
     <div style={{ margin: "5px" }}>
       <h3>이벤트 기초</h3>
@@ -22,7 +27,7 @@ const App = () => {
         <button onClick={decrement}>감소</button>
       </div>
       <div>
-        카운트 : <input type="text" value={count} />
+        카운트 : <input type="text" onChange={changeHandler} value={count} />
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const InputTodo = (props: InputTodoProps) => {
 
   const addHandler = () => {
     props.addTodo(todo);
-    setTodo("");
+    setTodo((prev) => "");
   };
 
   const enterInput = (e: React.KeyboardEvent) => {

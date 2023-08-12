@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useState } from "react";
+import { useMemo, useCallback, useState } from 'react';
 
 type TodoListItemType = {
   id: number;
@@ -6,20 +6,30 @@ type TodoListItemType = {
 };
 
 const getTodoListCount = (todoList: Array<TodoListItemType>) => {
-  console.log("## TodoList 카운트 : ", todoList.length);
+  console.log('## TodoList 카운트 : ', todoList.length);
   return todoList.length;
 };
 
 const App = () => {
-  const [todoList, setTodoList] = useState<Array<TodoListItemType>>([]);
-  const [todo, setTodo] = useState<string>("");
-  const memoizedCount = useMemo<number>(() => getTodoListCount(todoList), [todoList]);
+  const [todoList, setTodoList] = useState<Array<TodoListItemType>>([
+    { id: new Date().getTime(), todo: 'abc' },
+    { id: new Date().getTime() + 1, todo: 'abcd' },
+  ]);
+  const [todo, setTodo] = useState<string>('');
+  const memoizedCount = useMemo<number>(
+    () => getTodoListCount(todoList),
+    [todoList]
+  );
 
-  const addTodo = useCallback((todo: string) => {
-    let newTodoList = [...todoList, { id: new Date().getTime(), todo: todo }];
-    setTodoList(newTodoList);
-    setTodo("");
-  }, []);
+  const addTodo = useCallback(
+    (todo: string) => {
+      let newTodoList = [...todoList, { id: new Date().getTime(), todo: todo }];
+      setTodoList(newTodoList);
+      setTodo('');
+    },
+    [todoList]
+  );
+
   const deleteTodo = useCallback(
     (id: number) => {
       let index = todoList.findIndex((item) => item.id === id);
@@ -31,8 +41,12 @@ const App = () => {
   );
 
   return (
-    <div className="boxStyle">
-      <input type="text" value={todo} onChange={(e) => setTodo(e.target.value)} />
+    <div className='boxStyle'>
+      <input
+        type='text'
+        value={todo}
+        onChange={(e) => setTodo(e.target.value)}
+      />
       <button onClick={() => addTodo(todo)}>Add Todo</button>
       <br />
       <ul>

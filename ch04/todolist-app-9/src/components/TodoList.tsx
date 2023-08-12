@@ -15,7 +15,6 @@ const TodoList = (props: TodoListProps) => {
 
   return (
     <div className="row">
-      {" "}
       <div className="col">
         <ul className="list-group">{items}</ul>
       </div>

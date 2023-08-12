@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+hr.dash-style{
+  background-color: #FFF;
+  border-top: 2px dashed gray;
+}

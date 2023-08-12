@@ -1,5 +1,8 @@
 import { useState } from "react";
 import CountryList from "./CountryList";
+import styles from "./App.module.css";
+import Footer from "./Footer";
+import { DefaultTheme } from "styled-components";
 
 export type CountryType = {
   no: number;
@@ -15,6 +18,7 @@ const App = () => {
     { no: 3, country: "피지", visited: false },
     { no: 4, country: "콜롬비아", visited: false },
   ]);
+  const [theme, setTheme] = useState<DefaultTheme>('basic' as unknown as DefaultTheme);
 
   const addResult = (x: number, y: number) => {
     return (
@@ -26,10 +30,11 @@ const App = () => {
 
   return (
     <div className="container">
-      <h2>Hello {msg}!</h2>
+      <h2 className={styles.test}>Hello {msg}!</h2>
       <hr className="dash-style" />
       {addResult(4, 3)}
       <CountryList countries={list} />
+      <Footer theme="basic"/>
     </div>
   );
 };

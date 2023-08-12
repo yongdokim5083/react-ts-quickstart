@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "date-and-time": "^2.4.1",
-    "immer": "^9.0.16",
+    "immer": "^9.0.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -4,17 +4,17 @@ const App = () => {
   let msg = "World";
   const addResult = (x: number, y: number) => {
     return (
-      <div>
+      <div className="card card-body bg-light mb-3">
         {x} + {y} = {x + y}
       </div>
     );
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Hello {msg}!</h2>
-      <hr />
-      {addResult(4, 3)}
+      <hr className="dash-style" />
+      {addResult(5, 3)}
     </div>
   );
 };
