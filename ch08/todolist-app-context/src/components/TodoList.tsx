@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
-import TodoContext from "../TodoContext";
-import TodoListItem from "./TodoListItem";
+import React, { useContext, useState } from 'react';
+import TodoContext from '../TodoContext';
+import TodoListItem from './TodoListItem';
 
 const TodoList = () => {
   const value = useContext(TodoContext);
+
+  console.log('TodoList value: ', value);
 
   let items = value?.state.todoList.map((item) => {
     return (
@@ -17,10 +19,10 @@ const TodoList = () => {
   });
 
   return (
-    <div className="row">
-      {" "}
-      <div className="col">
-        <ul className="list-group">{items}</ul>
+    <div className='row'>
+      {' '}
+      <div className='col'>
+        <ul className='list-group'>{items}</ul>
       </div>
     </div>
   );

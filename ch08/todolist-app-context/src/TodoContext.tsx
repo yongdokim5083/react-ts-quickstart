@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import produce from "immer";
+import React, { useState } from 'react';
+import produce from 'immer';
 
 export type TodoListItemType = {
   no: number;
@@ -31,10 +31,10 @@ type PropsType = {
 // <TodoContext.Provider value={value}>{children}</TodoContext.Provider>
 export const TodoProvider = (props: PropsType) => {
   const [todoList, setTodoList] = useState<Array<TodoListItemType>>([
-    { no: 1, todo: "React학습1", done: false },
-    { no: 2, todo: "React학습2", done: false },
-    { no: 3, todo: "React학습3", done: true },
-    { no: 4, todo: "React학습4", done: false },
+    { no: 1, todo: 'React학습1', done: false },
+    { no: 2, todo: 'React학습2', done: false },
+    { no: 3, todo: 'React학습3', done: true },
+    { no: 4, todo: 'React학습4', done: false },
   ]);
 
   const addTodo = (todo: string) => {
@@ -64,7 +64,9 @@ export const TodoProvider = (props: PropsType) => {
     state: { todoList },
     actions: { addTodo, deleteTodo, toggleDone },
   };
-  return <TodoContext.Provider value={values}>{props.children}</TodoContext.Provider>;
+  return (
+    <TodoContext.Provider value={values}>{props.children}</TodoContext.Provider>
+  );
 };
 
 export default TodoContext;

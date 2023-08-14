@@ -1,8 +1,14 @@
-import { useState } from "react";
-import App from "./App";
-import produce from "immer";
+import { useEffect, useState } from 'react';
+import App from './App';
+import produce from 'immer';
+import { fetchTodoList, TodoItem } from './api/BackendAPI';
 
-export type TodoItemType = { id: number; todo: string; desc: string; done: boolean };
+export type TodoItemType = {
+  id: number;
+  todo: string;
+  desc: string;
+  done: boolean;
+};
 export type StatesType = { todoList: Array<TodoItemType> };
 export type CallbacksType = {
   addTodo: (todo: string, desc: string) => void;
@@ -12,12 +18,19 @@ export type CallbacksType = {
 };
 
 const AppContainer = () => {
+  const reader = fetchTodoList();
+
   const [todoList, setTodoList] = useState<Array<TodoItemType>>([
-    { id: 1, todo: "ES6학습", desc: "설명1", done: false },
-    { id: 2, todo: "React학습", desc: "설명2", done: false },
-    { id: 3, todo: "ContextAPI 학습", desc: "설명3", done: true },
-    { id: 4, todo: "야구경기 관람", desc: "설명4", done: false },
+    { id: 1, todo: 'ES6학습', desc: '설명1', done: false },
+    { id: 2, todo: 'React학습', desc: '설명2', done: false },
+    { id: 3, todo: 'ContextAPI 학습', desc: '설명3', done: true },
+    { id: 4, todo: '야구경기 관람', desc: '설명4', done: false },
   ]);
+
+  useEffect(() => {
+    const todoList = reader.read() as Array<TodoItem>;
+    setTodoList(todoList);
+  }, []);
 
   const addTodo = (todo: string, desc: string) => {
     let newTodoList = produce(todoList, (draft) => {
@@ -42,7 +55,12 @@ const AppContainer = () => {
     setTodoList(newTodoList);
   };
 
-  const updateTodo = (id: number, todo: string, desc: string, done: boolean) => {
+  const updateTodo = (
+    id: number,
+    todo: string,
+    desc: string,
+    done: boolean
+  ) => {
     let index = todoList.findIndex((todo) => todo.id === id);
     let newTodoList = produce(todoList, (draft) => {
       draft[index] = { ...draft[index], todo, desc, done };
@@ -50,7 +68,12 @@ const AppContainer = () => {
     setTodoList(newTodoList);
   };
 
-  const callbacks: CallbacksType = { addTodo, deleteTodo, updateTodo, toggleDone };
+  const callbacks: CallbacksType = {
+    addTodo,
+    deleteTodo,
+    updateTodo,
+    toggleDone,
+  };
   const states: StatesType = { todoList };
 
   return <App callbacks={callbacks} states={states} />;

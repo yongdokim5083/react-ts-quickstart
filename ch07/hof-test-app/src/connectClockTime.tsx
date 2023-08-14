@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import DateAndTime from "date-and-time";
+import { useEffect, useState } from 'react';
+import DateAndTime from 'date-and-time';
 
 export enum TimeFormatEnum {
-  HHmmss = "HH:mm:ss",
-  HHmm = "HH:mm",
-  HHmmKOR = "HH시 mm분",
-  HHmmssKOR = "HH시 mm분 ss초",
+  HHmmss = 'HH:mm:ss',
+  HHmm = 'HH:mm',
+  HHmmKOR = 'HH시 mm분',
+  HHmmssKOR = 'HH시 mm분 ss초',
 }
 
 export const connectClockTime = (
@@ -14,7 +14,9 @@ export const connectClockTime = (
   interval: number
 ) => {
   return (props: any) => {
-    let [currentTime, setCurrentTime] = useState<string>(DateAndTime.format(new Date(), timeFormat));
+    let [currentTime, setCurrentTime] = useState<string>(
+      DateAndTime.format(new Date(), timeFormat)
+    );
     useEffect(() => {
       const handle = window.setInterval(() => {
         setCurrentTime(DateAndTime.format(new Date(), timeFormat));

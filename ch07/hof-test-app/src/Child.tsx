@@ -1,10 +1,10 @@
-import React from "react";
-import { connectClockTime, TimeFormatEnum } from "./connectClockTime";
-import { connectMousePos, PositionType } from "./connectMousePos";
+import React from 'react';
+import { connectClockTime, TimeFormatEnum } from './connectClockTime';
+import { connectMousePos, PositionType } from './connectMousePos';
 
 type PropsType = { currentTime: string; position: PositionType };
 
-const Child = (props: PropsType) => {
+const Child = React.memo((props: PropsType) => {
   return (
     <div>
       <h2>고차 컴포넌트 사용하기</h2>
@@ -15,6 +15,8 @@ const Child = (props: PropsType) => {
       </div>
     </div>
   );
-};
+});
 
-export default connectMousePos(connectClockTime(Child, TimeFormatEnum.HHmmssKOR, 5000));
+export default connectMousePos(
+  connectClockTime(Child, TimeFormatEnum.HHmmssKOR, 5000)
+);

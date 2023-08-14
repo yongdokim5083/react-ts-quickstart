@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export type PositionType = {
   x: number;
@@ -10,10 +10,10 @@ export const connectMousePos = (TargetComponent: React.ComponentType<any>) => {
     let [position, setPosition] = useState<PositionType>({ x: 0, y: 0 });
     useEffect(() => {
       const onMove = (e: MouseEvent) => setPosition({ x: e.pageX, y: e.pageY });
-      window.addEventListener("mousemove", onMove);
+      window.addEventListener('mousemove', onMove);
 
       return () => {
-        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener('mousemove', onMove);
       };
     }, []);
 
